@@ -20,7 +20,7 @@ import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 
 @Controller
 @RequestMapping("/recetas")
-public class VeterinaryController {
+public class RecetasController {
 	@Autowired
 	private VeterinaryRepo repo;
 	
