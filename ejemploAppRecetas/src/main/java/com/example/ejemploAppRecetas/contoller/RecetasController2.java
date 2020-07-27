@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.ejemploAppRecetas.entities.*;
-import com.example.ejemploAppRecetas.repository.*;
+import com.example.ejemploAppRecetas.entities.Receta;
+import com.example.ejemploAppRecetas.repository.RecetaRepo;
 import com.example.ejemploAppRecetas.service.PictureService;
-import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
+//import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 
 @Controller
 @RequestMapping("/recetas")
@@ -42,7 +42,7 @@ public class RecetasController2 {
 	@GetMapping("/list")
 	public String showRecipes(Model model)
 	{
-		model.addAttribute("recipes", repo.findAll());
+		model.addAttribute("recipes",);
 		return "list_recipes";
 	}
 	
