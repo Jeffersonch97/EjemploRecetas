@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.VeterinarySystem.entities.*;
-import com.example.VeterinarySystem.repository.*;
-import com.example.VeterinarySystem.service.PictureService;
+import com.example.ejemploAppRecetas.entities.*;
+import com.example.ejemploAppRecetas.repository.*;
+import com.example.ejemploAppRecetas.service.PictureService;
 import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 
 @Controller
 @RequestMapping("/recetas")
-public class RecetasController {
+public class RecetasController2 {
 	@Autowired
-	private VeterinaryRepo repo;
+	private Receta repo;
 	
 	@Autowired
 	PictureService picService;
@@ -34,7 +34,7 @@ public class RecetasController {
 	}
 	
 	@GetMapping("/signup")
-	public String showSignUpForm(Recetas receta)
+	public String showSignUpForm(Receta receta)
 	{
 		return "add_recipe";
 	}
