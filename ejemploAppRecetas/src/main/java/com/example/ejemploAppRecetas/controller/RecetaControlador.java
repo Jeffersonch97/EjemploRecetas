@@ -1,4 +1,4 @@
-package com.example.ejemploAppRecetas.contoller;
+package com.example.ejemploAppRecetas.controller;
 
 import java.util.UUID;
 import org.springframework.*;
@@ -20,7 +20,7 @@ import com.example.ejemploAppRecetas.service.PictureService;
 
 @Controller
 @RequestMapping("/recetas")
-public class RecetaController {
+public class RecetaControlador {
 	@Autowired
 	private RecetaRepo repo;
 	
