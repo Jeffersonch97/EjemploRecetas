@@ -1,6 +1,7 @@
 package com.example.ejemploAppRecetas.contoller;
 
 import java.util.UUID;
+import org.springframework.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.ejemploAppRecetas.entities.Receta;
 import com.example.ejemploAppRecetas.repository.RecetaRepo;
 import com.example.ejemploAppRecetas.service.PictureService;
-//import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 
 @Controller
 @RequestMapping("/recetas")
-public class RecetasController2 {
+public class RecetaController {
 	@Autowired
 	private Receta repo;
 	
@@ -33,19 +33,18 @@ public class RecetasController2 {
 		return "index";
 	}
 	
-	@GetMapping("/signup")
+	
+	@GetMapping("/add_recipe")
 	public String showSignUpForm(Receta receta)
 	{
 		return "add_recipe";
 	}
-	
 	@GetMapping("/list")
 	public String showRecipes(Model model)
 	{
-		model.addAttribute("recipes",);
+		model.addAttribute("recipes",repo.findAll());
 		return "list_recipes";
 	}
-	
 	@RequestMapping("/login")
 	public String showLogin()
 	{
@@ -58,14 +57,13 @@ public class RecetasController2 {
 		return "soundcloud.html";
 	}
 	
-	@PreAuthorize("hasAuthority('Admin')")
+	@PreAuthorize("hasAuthority('admin')")
 	@RequestMapping
 	public String showPrivate(Model model)
 	{
 		model.addAttribute("recipes",repo.findAll());
 		return "list_recipes";
 	}
-	
 	@PreAuthorize("hasAuthority('admin')")
 	@PostMapping("/add")
 	public String addRecipe(Receta receta,BindingResult result, Model model, @RequestParam("file") MultipartFile file)
@@ -80,7 +78,6 @@ public class RecetasController2 {
 		repo.save(receta);
 		return "redirect:list";
 	}
-	
 	@PreAuthorize("hasAuthority('admin')")
 	@GetMapping("/edit/{id}")
 	public String showUpdateForm(@PathVariable("id") Long id,Model model)
@@ -109,7 +106,6 @@ public class RecetasController2 {
 		repo.save(receta);
 		return "redirect:/recetas/list";
 	}
-	
 	@PreAuthorize("hasAuthority('admin')")
 	@GetMapping("/delete/{id}")
 	public String deleteRecipe(@PathVariable("id") Long id, Model model)
@@ -121,7 +117,4 @@ public class RecetasController2 {
 		return "list_recipes";
 	}
 	}
-		
 	
-	
-}

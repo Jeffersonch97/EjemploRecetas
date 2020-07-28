@@ -45,6 +45,4 @@ public String getDificultad() {
 public void setDificultad(String dificultad) {
 	this.dificultad = dificultad;
 }
-
-
 }
