@@ -22,7 +22,7 @@ import com.example.ejemploAppRecetas.service.PictureService;
 @RequestMapping("/recetas")
 public class RecetaController {
 	@Autowired
-	private Receta repo;
+	private RecetaRepo repo;
 	
 	@Autowired
 	PictureService picService;
@@ -82,7 +82,7 @@ public class RecetaController {
 	@GetMapping("/edit/{id}")
 	public String showUpdateForm(@PathVariable("id") Long id,Model model)
 	{
-		Receta receta = repo.findById(id).orElseThrow(()->new IllegalArgumentException("Invalid recipe Id:")+id));
+		Receta receta = repo.findById(id).orElseThrow(()-> new IllegalArgumentException("Invalid recipe Id:"+id));
 		model.addAttribute("recipe",receta);
 		return "update_recipe";
 	}
@@ -106,11 +106,12 @@ public class RecetaController {
 		repo.save(receta);
 		return "redirect:/recetas/list";
 	}
+	
 	@PreAuthorize("hasAuthority('admin')")
 	@GetMapping("/delete/{id}")
 	public String deleteRecipe(@PathVariable("id") Long id, Model model)
 	{
-		Receta receta= repo.findById(id).orElseThrow(() ->new IllegalAnnotationsException("Invalid recipe Id:"+id));
+		Receta receta= repo.findById(id).orElseThrow(() ->new IllegalArgumentException ("Invalid recipe Id:"+id));
 		repo.delete(receta);
 		picService.deletePicture(receta.getFoto());
 		model.addAttribute("recipes",repo.findAll());
